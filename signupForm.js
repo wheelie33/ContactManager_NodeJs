@@ -1,10 +1,11 @@
 var dataAccess = require("./dataAccess");
 
-function signUp(firstName, lastName, emailAddress) {
-    var saved = dataAccess.saveRecord(firstName, lastName, emailAddress);
-    return saved;
+function signUpForm(){
+
+}
+
+signUpForm.prototype.signUp = function signUp(firstName, lastName, emailAddress) {
+    return new dataAccess().saveRecord(firstName, lastName, emailAddress);
   }
 
-  module.exports = {
-      signUp: signUp
-  };
+  module.exports = signUpForm;

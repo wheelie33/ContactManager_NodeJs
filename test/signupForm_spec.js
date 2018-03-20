@@ -14,43 +14,43 @@ describe('signupForm.signup()', function () {
   });
 
   it('should save for all 3 fields valid input', function () {
-    var saved = signupForm.signUp(cleanData.firstName, cleanData.lastName, cleanData.emailAddress);
+    var saved = new signupForm().signUp(cleanData.firstName, cleanData.lastName, cleanData.emailAddress);
     expect(saved).to.be.true;
   });
 
   it('should not save if email is missing TLD', function(){
-    var saved = signupForm.signUp(cleanData.firstName, cleanData.lastName, "wheelie33@gmail");
+    var saved = new signupForm().signUp(cleanData.firstName, cleanData.lastName, "wheelie33@gmail");
     expect(saved).to.be.false;
   });
 
   it('should not save a first name longer than 10 characters', function(){
-    var saved = signupForm.signUp('JasonJasonJasonJasonJason', cleanData.lastName, cleanData.emailAddress);
+    var saved = new signupForm().signUp('JasonJasonJasonJasonJason', cleanData.lastName, cleanData.emailAddress);
     expect(saved).to.be.false;
   });
 
   it('should not save a last name longer than 20 characters', function(){
-    var saved = signupForm.signUp(cleanData.firstName, "WhelehonWhelehonWhelehonWhelehonWhelehon", cleanData.emailAddress);
+    var saved = new signupForm().signUp(cleanData.firstName, "WhelehonWhelehonWhelehonWhelehonWhelehon", cleanData.emailAddress);
     expect(saved).to.be.false;
   });
 
   it('should save a first name exactly 10 characters long', function(){
-    var saved = signupForm.signUp("JasonJason", cleanData.lastName, cleanData.emailAddress);
+    var saved = new signupForm().signUp("JasonJason", cleanData.lastName, cleanData.emailAddress);
     expect(saved).to.be.true;
   });
 
   it('should save a last name exactly 20 characters long', function(){
-    var saved = signupForm.signUp(cleanData.firstName, "WhelehonWhelehonWhel", cleanData.emailAddress);
+    var saved = new signupForm().signUp(cleanData.firstName, "WhelehonWhelehonWhel", cleanData.emailAddress);
     expect(saved).to.be.true;
   });
   
   it('should not save a known spam email address', function(){
-    var saved = signupForm.signUp(cleanData.firstName, cleanData.lastName, "knownspam@spam.com");
+    var saved = new signupForm().signUp(cleanData.firstName, cleanData.lastName, "knownspam@spam.com");
     expect(saved).to.be.false;
 
   });
 
   it('should save a known non-spam email address', function(){
-    var saved = signupForm.signUp(cleanData.firstName, cleanData.lastName, "notspam@not-spam.com");
+    var saved = new signupForm().signUp(cleanData.firstName, cleanData.lastName, "notspam@not-spam.com");
     expect(saved).to.be.true;
 
   });

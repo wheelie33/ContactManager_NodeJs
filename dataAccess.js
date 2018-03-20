@@ -1,7 +1,16 @@
 var spamService = require('./services/spamService');
+var databaseConnection = require('./databaseConnection');
 
+function dataAccess(){
 
-function saveRecord(firstName, lastName, emailAddress) {
+}
+
+dataAccess.prototype.saveRecord = function saveRecord(firstName, lastName, emailAddress) {
+    
+    if(!new databaseConnection("(local)", 30, "Contacts").isConnected()){
+        return false;
+    }
+
     if (firstName.length > 10)
     {
         return false;
@@ -23,8 +32,9 @@ function saveRecord(firstName, lastName, emailAddress) {
     }
    
     return true;
-  }
+}
 
-  module.exports = {
-    saveRecord: saveRecord
-  };
+
+
+
+  module.exports = dataAccess;
