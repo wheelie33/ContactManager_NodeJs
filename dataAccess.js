@@ -11,19 +11,40 @@ dataAccess.prototype.saveRecord = function saveRecord(firstName, lastName, email
         return false;
     }
 
-    if (firstName.length > 10)
+    if (firstName.length <= 10)
     {
+        var firstNameRegex = /^[a-z]+$/i
+        if(!firstNameRegex.test(firstName)){
+            return false;
+        }
+    }
+    else{
         return false;
     }
     
-    
-    if (lastName.length > 20)
+    if(lastName.includes('-')){
+        var lastNameParts = lastName.split('-');
+        for(i = 0; i< lastNameParts.length; i++){
+            var lastNameRegex = /^[a-z]+$/i;
+
+            if(!lastNameRegex.test(lastNameParts[i])){
+                return false;
+            }
+        }
+    }
+    else if (lastName.length <= 20)
     {
+        var lastNameRegex = /^[a-z]+$/i;
+        if(!lastNameRegex.test(lastName)){
+            return false;
+        }
+    }
+    else{
         return false;
     }
 
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(!re.test(emailAddress)){
+    var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!emailRegex.test(emailAddress)){
         return false;
     }
 

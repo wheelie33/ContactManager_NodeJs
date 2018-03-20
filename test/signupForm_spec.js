@@ -28,8 +28,18 @@ describe('signupForm.signup()', function () {
     expect(saved).to.be.false;
   });
 
+  it('should not save a first name with non-alpha characters', function(){
+    var saved = new signupForm().signUp('12345', cleanData.lastName, cleanData.emailAddress);
+    expect(saved).to.be.false;
+  });
+
   it('should not save a last name longer than 20 characters', function(){
     var saved = new signupForm().signUp(cleanData.firstName, "WhelehonWhelehonWhelehonWhelehonWhelehon", cleanData.emailAddress);
+    expect(saved).to.be.false;
+  });
+
+  it('should not save a last name with non-alpha characters', function(){
+    var saved = new signupForm().signUp(cleanData.firstName, '1235', cleanData.emailAddress);
     expect(saved).to.be.false;
   });
 
@@ -54,5 +64,20 @@ describe('signupForm.signup()', function () {
     expect(saved).to.be.true;
 
   });
+
+  it('should save a hyphenated last name each part is less than 20 and total is less than 20', function(){
+    var saved = new signupForm().signUp(cleanData.firstName, "Smith-Johnson", cleanData.emailAddress);
+    expect(saved).to.be.true;
+  });
+
+  // it('should not save a hyphenated last name each part is less than 20 but total is more than 20', function(){
+  //   var saved = new signupForm().signUp(cleanData.firstName, "wwwwwwwwww-wwwwwwwwww", cleanData.emailAddress);
+  //   expect(saved).to.be.false;
+  // });
+
+  // it('should not save a hyphenated last name where ech part is greater than 20', function(){
+  //   var saved = new signupForm().signUp(cleanData.firstName, "wwwwwwwwwwwwwwwwwwwwwwwww-wwwwwwwwwwwwwwwwwwwwwwwww", cleanData.emailAddress);
+  //   expect(saved).to.be.false;
+  // });
 
 });
