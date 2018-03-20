@@ -49,4 +49,10 @@ describe('signupForm.signup()', function () {
 
   });
 
+  it('should save a known non-spam email address', function(){
+    var saved = signupForm.signUp(cleanData.firstName, cleanData.lastName, "notspam@not-spam.com");
+    expect(saved).to.be.true;
+
+  });
+
 });
