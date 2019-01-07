@@ -13,9 +13,9 @@ describe('signupForm.signup()', function () {
     expect(1).to.equal(1);
   });
   
-  it('should explode', function(){
-    expect(1).to.equal(2);
-  });
+//   it('should explode', function(){
+//     expect(1).to.equal(2);
+//   });
 
   it('should save for all 3 fields valid input', function () {
     var saved = new signupForm().signUp(cleanData.firstName, cleanData.lastName, cleanData.emailAddress);
